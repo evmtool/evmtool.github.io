@@ -1,0 +1,3097 @@
+openapi: 3.0.0
+
+servers:
+  - url: https://api.evm.eosnetwork.com
+  - url: https://api.testnet.evm.eosnetwork.com
+  - url: https://eth.meowrpc.com
+
+tags:
+  - name: Block
+  - name: Client
+  - name: Execute
+  - name: FeeMarket
+  - name: Filter
+  - name: Mining
+  - name: Sign
+  - name: State
+  - name: Submit
+  - name: Transaction
+
+paths:
+  /eth_getBlockByHash:
+    post:
+      tags:
+        - Block
+      description: Returns information about a block by hash.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getBlockByHash
+                params:
+                  title: params
+                  type: array
+                  items:
+                    anyOf:
+                      - $ref: '#/components/schemas/hash32'
+                      - title: Hydrated transactions
+                        type: boolean
+                  example: ["0x7e96ceea00109e6199f2f8d4db36152352facea310658936499aba0f52d6d773", true]
+      responses:
+        '200':
+          description: Block information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+              example:
+                difficulty: "0x1"
+                extraData: "0x"
+                gasLimit: "0x7ffffffffff"
+                gasUsed: "0x0"
+                hash: "0x7e96ceea00109e6199f2f8d4db36152352facea310658936499aba0f52d6d773"
+                logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+                miner: "0xbbbbbbbbbbbbbbbbbbbbbbbb5530ea015b900000"
+                mixHash: "0x120ebb0afd7b1d85fc0731e973e749092585faaad987fda3a70e14d5f9d4d99c"
+                nonce: "0x0000000000000000"
+                number: "0x1b4"
+                parentHash: "0xfe52275bf29f79b40dfa0aefabdb404e1f629aada23dfe568d412cfb5c4555c7"
+                receiptsRoot: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                sha3Uncles: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                size: "0x201"
+                stateRoot: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                timestamp: "0x642cdc15"
+                totalDifficulty: "0x1b5"
+                transactions: []
+                transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+                uncles: []         
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getBlockByNumber:
+    post:
+      tags:
+        - Block
+      description: Returns information about a block by number.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getBlockByNumber
+                params:
+                  title: params
+                  type: array
+                  items:
+                    anyOf:
+                      - $ref: '#/components/schemas/BlockNumberOrTag'
+                      - title: Hydrated transactions
+                        type: boolean
+                  example: ["0x1b4", true]
+      responses:
+        '200':
+          description: Block information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+              example:
+                difficulty: "0x1"
+                extraData: "0x"
+                gasLimit: "0x7ffffffffff"
+                gasUsed: "0x0"
+                hash: "0x7e96ceea00109e6199f2f8d4db36152352facea310658936499aba0f52d6d773"
+                logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+                miner: "0xbbbbbbbbbbbbbbbbbbbbbbbb5530ea015b900000"
+                mixHash: "0x120ebb0afd7b1d85fc0731e973e749092585faaad987fda3a70e14d5f9d4d99c"
+                nonce: "0x0000000000000000"
+                number: "0x1b4"
+                parentHash: "0xfe52275bf29f79b40dfa0aefabdb404e1f629aada23dfe568d412cfb5c4555c7"
+                receiptsRoot: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                sha3Uncles: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                size: "0x201"
+                stateRoot: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                timestamp: "0x642cdc15"
+                totalDifficulty: "0x1b5"
+                transactions: []
+                transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+                uncles: []
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getBlockTransactionCountByHash:
+    post:
+      tags:
+        - Block
+      description: Returns the number of transactions in a block from a block matching the given block hash.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getBlockTransactionCountByHash
+                params:
+                  title: params
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/hash32'
+                  example: ["0xc9d0f043a088724f06901073f9f60c76eca63cf41314e5c156d2d8e34b60d34d"]
+      responses:
+        '200':
+          description: Transaction count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x1"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getBlockTransactionCountByNumber:
+    post:
+      tags:
+        - Block
+      description: Returns the number of transactions in a block matching the given block number.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getBlockTransactionCountByNumber
+                params:
+                  title: params
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BlockNumberOrTag'
+                  example: ["4786238"]
+      responses:
+        '200':
+          description: Transaction count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x1"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getUncleCountByBlockHash:
+    post:
+      tags:
+        - Block
+      description: Returns the number of uncles in a block from a block matching the given block hash.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getUncleCountByBlockHash
+                params:
+                  title: params
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/hash32'
+                  example: ["0xc9d0f043a088724f06901073f9f60c76eca63cf41314e5c156d2d8e34b60d34d"]
+      responses:
+        '200':
+          description: Uncle count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x1"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getUncleCountByBlockNumber:
+    post:
+      tags:
+        - Block
+      description: Returns the number of transactions in a block matching the given block number.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getUncleCountByBlockNumber
+                params:
+                  title: params
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BlockNumberOrTag'
+                  example: ["4786238"]
+      responses:
+        '200':
+          description: Uncle count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x1"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /web3_clientVersion:
+    post:
+      tags:
+        - Client
+      description: Returns the current client version.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: web3_clientVersion
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+
+      responses:
+        '200':
+          description: The current client version
+          content:
+            application/json:
+              schema:
+                type: string
+              example: "Geth/v1.12.0-stable-e501b3b0/linux-amd64/go1.20.4"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /web3_sha3:
+    post:
+      tags:
+        - Client
+      description: Returns Keccak-256 (not the standardized SHA3-256) of the given data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: web3_sha3
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    type: string
+                  example: ["0x68656c6c6f20776f726c64"]
+
+
+      responses:
+        '200':
+          description: The SHA3 result of the given string.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: "0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /net_version:
+    post:
+      tags:
+        - Client
+      description: Returns the current network id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: net_version
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+
+
+      responses:
+        '200':
+          description: The current network id.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: "1"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /net_listening:
+    post:
+      tags:
+        - Client
+      description: Returns true if client is actively listening for network connections.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: net_listening
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+
+
+      responses:
+        '200':
+          description: Boolean - true when listening, otherwise false.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: true
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /net_peerCount:
+    post:
+      tags:
+        - Client
+      description: Returns number of peers currently connected to the client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: net_peerCount
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+
+      responses:
+        '200':
+          description: Integer of the number of connected peers.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: "0x2"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_protocolVersion:
+    post:
+      tags:
+        - Client
+      description: Returns the current Ethereum protocol version.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_protocolVersion
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+
+      responses:
+        '200':
+          description: The current Ethereum protocol version
+          content:
+            application/json:
+              schema:
+                type: string
+              example: "0x2"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_chainId:
+    post:
+      tags:
+        - Client
+      description: Returns the chain ID of the current network.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_chainId
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+
+      responses:
+        '200':
+          description: Chain ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x4571"   
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_syncing:
+    post:
+      tags:
+        - Client
+      description: Returns an object with data about the sync status or false.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_syncing
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Syncing status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncingStatus'
+              example:
+                startingBlock: '0x384'
+                currentBlock: '0x386'
+                highestBlock: '0x454' 
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_coinbase:
+    post:
+      tags:
+        - Client
+      description: Returns the client coinbase address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_coinbase
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Coinbase address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/address'
+              example: "0x407d73d8a49eeb85d32cf465507dd71d507100c1"   
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_accounts:
+    post:
+      tags:
+        - Client
+      description: Returns a list of addresses owned by client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_accounts
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/address'
+              example: ["0x407d73d8a49eeb85d32cf465507dd71d507100c1"]
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_blockNumber:
+    post:
+      tags:
+        - Client
+      description: Returns the number of most recent block.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_blockNumber
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Block number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x1091413"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /eth_gasPrice:
+    post:
+      tags:
+        - FeeMarket
+      description: Returns the current price per gas in wei.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_gasPrice
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Gas price
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x12cd0afba5"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_maxPriorityFeePerGas:
+    post:
+      tags:
+        - FeeMarket
+      description: Returns the current maxPriorityFeePerGas per gas in wei.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_maxPriorityFeePerGas
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Max priority fee per gas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x5f5e100"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /eth_newFilter:
+    post:
+      tags:
+        - Filter
+      description: Creates a filter object, based on filter options, to notify when the state changes (logs).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_newFilter
+                params:
+                  title: params
+                  type: array
+                  items:
+                    - $ref: '#/components/schemas/Filter'
+                  example: [{fromBlock: "0x1", toBlock: "0x2", address: "0x8888f1f195afa192cfee860698584c030f4c9db1", topics: ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null, ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]}]
+      responses:
+        '200':
+          description: Filter Identifier
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0xa5304daa5e4ab0cbff2620d2906e2ae8"      
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_newBlockFilter:
+    post:
+      tags:
+        - Filter
+      description: Creates a filter in the node, to notify when a new block arrives.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_newBlockFilter
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Filter Identifier
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x3d2557c80b4d33cdaf1490d59d224805"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_newPendingTransactionFilter:
+    post:
+      tags:
+        - Filter
+      description: Creates a filter in the node, to notify when new pending transactions arrive.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_newPendingTransactionFilter
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Filter Identifier
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0xcf21c3256474533e7f709ae24f40e448"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_uninstallFilter:
+    post:
+      tags:
+        - Filter
+      description: Uninstalls a filter with given id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_uninstallFilter
+                params:
+                  title: params
+                  type: array
+                  items:
+                    - $ref: '#/components/schemas/uint'
+                  example: ["0xb"]
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: boolean
+              example: true   
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getFilterChanges:
+    post:
+      tags:
+        - Filter
+      description: Polling method for a filter, which returns an array of logs which occurred since last poll.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getFilterChanges
+                params:
+                  title: params
+                  type: array
+                  items:
+                    - $ref: '#/components/schemas/uint'
+                  example: ["0xb"]
+      responses:
+        '200':
+          description: Log objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterResults'
+              example: [{ "logIndex": "0x1", "blockNumber":"0x1b4", "blockHash": "0x8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcfdf829c5a142f1fccd7d", "transactionHash":  "0xdf829c5a142f1fccd7d8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcf", "transactionIndex": "0x0", "address": "0x16c5785ac562ff41e2dcfdf829c5a142f1fccd7d", "data":"0x0000000000000000000000000000000000000000000000000000000000000000", "topics": ["0x59ebeb90bc63057b6515673c3ecf9438e5058bca0f92585014eced636878c9a5"]}]
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getFilterLogs:
+    post:
+      tags:
+        - Filter
+      description: Returns an array of all logs matching filter with given id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getFilterLogs
+                params:
+                  title: params
+                  type: array
+                  items:
+                    - $ref: '#/components/schemas/uint'
+                  example: ["0xb"]
+      responses:
+        '200':
+          description: Log objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterResults'
+              example: [{ "logIndex": "0x1", "blockNumber":"0x1b4", "blockHash": "0x8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcfdf829c5a142f1fccd7d", "transactionHash":  "0xdf829c5a142f1fccd7d8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcf", "transactionIndex": "0x0", "address": "0x16c5785ac562ff41e2dcfdf829c5a142f1fccd7d", "data":"0x0000000000000000000000000000000000000000000000000000000000000000", "topics": ["0x59ebeb90bc63057b6515673c3ecf9438e5058bca0f92585014eced636878c9a5"]}]
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getLogs:
+    post:
+      tags:
+        - Filter
+      description: Returns an array of all logs matching filter with given id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getLogs
+                params:
+                  title: params
+                  type: array
+                  items:
+                    - $ref: '#/components/schemas/Filter'
+                  example: [{fromBlock: "0x1", toBlock: "0x2", address: "0x8888f1f195afa192cfee860698584c030f4c9db1", topics: ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null, ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]}]
+      responses:
+        '200':
+          description: Log objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterResults'
+              example: [{ "logIndex": "0x1", "blockNumber":"0x1b4", "blockHash": "0x8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcfdf829c5a142f1fccd7d", "transactionHash":  "0xdf829c5a142f1fccd7d8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcf", "transactionIndex": "0x0", "address": "0x16c5785ac562ff41e2dcfdf829c5a142f1fccd7d", "data":"0x0000000000000000000000000000000000000000000000000000000000000000", "topics": ["0x59ebeb90bc63057b6515673c3ecf9438e5058bca0f92585014eced636878c9a5"]}]
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /eth_mining:
+    post:
+      tags:
+        - Mining
+      description: Returns whether the client is actively mining new blocks.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_mining
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Mining status
+          content:
+            application/json:
+              schema:
+                title: miningStatus
+                type: boolean
+              example: true
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_hashrate:
+    post:
+      tags:
+        - Mining
+      description: Returns the number of hashes per second that the node is mining with.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_hashrate
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Mining status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x0"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getWork:
+    post:
+      tags:
+        - Mining
+      description: Returns the hash of the current block, the seedHash, and the boundary condition to be met (“target”).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getWork
+                params:
+                  title: params
+                  type: array
+                  items: {}
+                  maxItems: 0
+      responses:
+        '200':
+          description: Current work
+          content:
+            application/json:
+              schema:
+                title: Current work
+                type: array
+                items:
+                  anyOf:
+                    - $ref: '#/components/schemas/bytes32'
+                    - $ref: '#/components/schemas/bytes32'
+                    - $ref: '#/components/schemas/bytes32'
+              example: ["0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0x5EED00000000000000000000000000005EED0000000000000000000000000000", "0xd1ff1c01710000000000000000000000d1ff1c01710000000000000000000000"]
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_submitWork:
+    post:
+      tags:
+        - Mining
+      description: Used for submitting a proof-of-work solution.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_submitWork
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/bytes8'
+                      - $ref: '#/components/schemas/bytes32'
+                      - $ref: '#/components/schemas/bytes32'
+                  example: ["0x0000000000000001","0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef","0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"]
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: boolean
+              example: true
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_submitHashrate:
+    post:
+      tags:
+        - Mining
+      description: Used for submitting mining hashrate.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_submitHashrate
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/bytes32'
+                      - $ref: '#/components/schemas/bytes32'
+                  example: ["0x0000000000000000000000000000000000000000000000000000000000500000","0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"]
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: boolean
+              example: true
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_sign:
+    post:
+      tags:
+        - Sign
+      description: Returns an EIP-191 signature over the provided data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_sign
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/address'
+                      - $ref: '#/components/schemas/bytes'
+                  example: ["0x9b2055d370f73ec7d8a03e965129118dc8f5bf83", "0xdeadbeaf"]
+      responses:
+        '200':
+          description: Signature
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bytes65'
+              example: "0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_signTransaction:
+    post:
+      tags:
+        - Sign
+      description: Returns an RLP encoded transaction signed by the specified account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_signTransaction
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/GenericTransaction'
+                  example: [{"data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675","from": "0xb60e8dd61c5d32be8058bb8eb970870f07233155","gas": "0x76c0","gasPrice": "0x9184e72a000","to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","value": "0x9184e72a","nonce":"0x10"}]
+      responses:
+        '200':
+          description: Encoded transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bytes'
+              example: "0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getBalance:
+    post:
+      tags:
+        - State
+      description: Returns the balance of the account of given address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getBalance
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/address'
+                      - $ref: '#/components/schemas/BlockNumberOrTagOrHash'
+                  example: ['0x21431733D89101bAb0aD6c1D7ACC94082f3D0487', 'latest']
+      responses:
+        '200':
+          description: Balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x0234c8a3397aab58"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getStorageAt:
+    post:
+      tags:
+        - State
+      description: Returns the value from a storage position at a given address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getStorageAt
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/address'
+                      - $ref: '#/components/schemas/uint256'
+                      - $ref: '#/components/schemas/BlockNumberOrTagOrHash'
+                  example: ["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x0", "latest"]
+      responses:
+        '200':
+          description: Balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bytes'
+              example: "0x00000000000000000000000000000000000000000000000000000000000004d2"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getTransactionCount:
+    post:
+      tags:
+        - State
+      description: Returns the number of transactions sent from an address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getTransactionCount
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/address'
+                      - $ref: '#/components/schemas/BlockNumberOrTagOrHash'
+                  example: ["0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0","latest"]
+      responses:
+        '200':
+          description: Transaction count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x1"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getCode:
+    post:
+      tags:
+        - State
+      description: Returns code at a given address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getCode
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/address'
+                      - $ref: '#/components/schemas/BlockNumberOrTagOrHash'
+                  example: ['0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b','latest']
+      responses:
+        '200':
+          description: Bytecode
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bytes'
+              example: "0x600160008035811a818181146012578301005b601b6001356025565b8060005260206000f25b600060078202905091905056"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getProof:
+    post:
+      tags:
+        - State
+      description: Returns the merkle proof for a given account and optionally some storage keys.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getCode
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/address'
+                      - title: StorageKeys
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/bytesMax32'
+                      - $ref: '#/components/schemas/BlockNumberOrTagOrHash'
+                  example: ["0x7F0d15C7FAae65896648C8273B6d7E43f58Fa842",["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"],"latest"]
+      responses:
+        '200':
+          description: Account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountProof'
+              example: {"accountProof":["0xf90211a...0701bc80","0xf90211a...0d832380","0xf90211a...5fb20c80","0xf90211a...0675b80","0xf90151a0...ca08080"],"balance":"0x0","codeHash":"0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470","nonce":"0x0","storageHash":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421","storageProof":[{"key":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421","proof":["0xf90211a...0701bc80","0xf90211a...0d832380"],"value":"0x1"}]}
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_sendTransaction:
+    post:
+      tags:
+        - Submit
+      description: Signs and submits a transaction.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_sendTransaction
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/GenericTransaction'
+                  example: [{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}]
+      responses:
+        '200':
+          description: Transaction hash
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hash32'
+              example: "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_sendRawTransaction:
+    post:
+      tags:
+        - Submit
+      description: Submits a raw transaction.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_sendRawTransaction
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/bytes'
+                  example: ["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"]
+      responses:
+        '200':
+          description: Transaction hash
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hash32'
+              example: "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getTransactionByHash:
+    post:
+      tags:
+        - Transaction
+      description: Returns the information about a transaction requested by transaction hash.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getTransactionByHash
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/hash32'
+                  example: ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+      responses:
+        '200':
+          description: Transaction information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionInfo'
+              example: {"hash":"0xc6ef2fc5426d6ad6fd9e2a26abeab0aa2411b7ab17f30a99d3cb96aed1d1055b","nonce":"0x","blockHash":"0xbeab0aa2411b7ab17f30a99d3cb9c6ef2fc5426d6ad6fd9e2a26a6aed1d1055b","blockNumber":"0x15df","transactionIndex":"0x1","from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","to":"0x85h43d8a49eeb85d32cf465507dd71d507100c1","value":"0x7f110","gas":"0x7f110","gasPrice":"0x09184e72a000","input":"0x603880600c6000396000f300603880600c6000396000f3603880600c6000396000f360",}
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getTransactionByBlockHashAndIndex:
+    post:
+      tags:
+        - Transaction
+      description: Returns information about a transaction by block hash and transaction index position.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getTransactionByBlockHashAndIndex
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/hash32'
+                      - $ref: '#/components/schemas/uint'
+                  example: ['0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331', '0x0']
+      responses:
+        '200':
+          description: Transaction information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionInfo'
+              example: ["0xc6ef2fc5426d6ad6fd9e2a26abeab0aa2411b7ab17f30a99d3cb96aed1d1055b", "0x0"]
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getTransactionByBlockNumberAndIndex:
+    post:
+      tags:
+        - Transaction
+      description: Returns information about a transaction by block number and transaction index position.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getTransactionByBlockNumberAndIndex
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/BlockNumberOrTag'
+                      - $ref: '#/components/schemas/uint'
+                  example: ['0x29c', '0x0']
+      responses:
+        '200':
+          description: Transaction information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionInfo'
+              example: ["0x29c", "0x0"]
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_getTransactionReceipt:
+    post:
+      tags:
+        - Transaction
+      description: Returns the receipt of a transaction by transaction hash.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_getTransactionReceipt
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/hash32'
+                  example: ['0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238']
+      responses:
+        '200':
+          description: Receipt Information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiptInfo'
+              example: {}
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_call:
+    post:
+      tags:
+        - Execute
+      description: Executes a new message call immediately without creating a transaction on the block chain.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_call
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/GenericTransaction'
+                      - $ref: '#/components/schemas/BlockNumberOrTagOrHash'
+                  example: [{"data": "0x70a082310000000000000000000000003e2277bd9bba5fb227c1b6cd87794b7e26f88f8d", "to": "0x2a3b2d64960036de519dc4a45cafd532bfa99ff0"}, "latest"]
+      responses:
+        '200':
+          description: Return data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bytes'
+              example: "0x000000000000000000000000000000000000000000000204148a38e0d6c00000"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_estimateGas:
+    post:
+      tags:
+        - Execute
+      description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_estimateGas
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/GenericTransaction'
+                      - $ref: '#/components/schemas/BlockNumberOrTag'
+                  example: [{"data": "0x70a082310000000000000000000000003e2277bd9bba5fb227c1b6cd87794b7e26f88f8d", "to": "0x2a3b2d64960036de519dc4a45cafd532bfa99ff0"}, "latest"]
+      responses:
+        '200':
+          description: Gas used
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uint'
+              example: "0x5208"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /eth_createAccessList:
+    post:
+      tags:
+        - Execute
+      description: Generates an access list for a transaction.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: eth_createAccessList
+                params:
+                  title: params
+                  type: array
+                  items: 
+                    anyOf:
+                      - $ref: '#/components/schemas/GenericTransaction'
+                      - $ref: '#/components/schemas/BlockNumberOrTag'
+                  example: [{"data": "0x70a082310000000000000000000000003e2277bd9bba5fb227c1b6cd87794b7e26f88f8d", "to": "0x2a3b2d64960036de519dc4a45cafd532bfa99ff0"}, "latest"]
+      responses:
+        '200':
+          description: Access list result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessList:
+                    title: "accessList"
+                    $ref: '#/components/schemas/AccessList'
+                  error:
+                    title: "error"
+                    type: string
+                  gasUsed:
+                    title: Gas used
+                    $ref: '#/components/schemas/uint'
+              example: {"accessList": [], "gasUsed": "0x53b8"}
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    address:
+      title: hex encoded address
+      type: string
+      pattern: ^0x[0-9,a-f,A-F]{40}$
+    addresses:
+      title: hex encoded address
+      type: array
+      items:
+        $ref: '#/components/schemas/address'
+    byte:
+      title: hex encoded byte
+      type: string
+      pattern: ^0x([0-9,a-f,A-F]?){1,2}$
+    bytes:
+      title: hex encoded bytes
+      type: string
+      pattern: ^0x[0-9a-f]*$
+    bytesMax32:
+      title: 32 hex encoded bytes
+      type: string
+      pattern: ^0x[0-9a-f]{0,64}$
+    bytes8:
+      title: 8 hex encoded bytes
+      type: string
+      pattern: ^0x[0-9a-f]{16}$
+    bytes32:
+      title: 32 hex encoded bytes
+      type: string
+      pattern: ^0x[0-9a-f]{64}$
+    bytes256:
+      title: 256 hex encoded bytes
+      type: string
+      pattern: ^0x[0-9a-f]{512}$
+    bytes65:
+      title: 65 hex encoded bytes
+      type: string
+      pattern: ^0x[0-9a-f]{65}$
+    uint:
+      title: hex encoded unsigned integer
+      type: string
+      pattern: ^0x([1-9a-f]+[0-9a-f]*|0)$
+    uint64:
+      title: hex encoded 64 bit unsigned integer
+      type: string
+      pattern: ^0x([1-9a-f]+[0-9a-f]{0,15})|0$
+    uint256:
+      title: hex encoded 256 bit unsigned integer
+      type: string
+      pattern: ^0x([1-9a-f]+[0-9a-f]{0,31})|0$
+    hash32:
+      title: 32 byte hex value
+      type: string
+      pattern: ^0x[0-9a-f]{64}$
+    Block:
+      title: Block object
+      type: object
+      required:
+        - parentHash
+        - sha3Uncles
+        - miner
+        - stateRoot
+        - transactionsRoot
+        - receiptsRoot
+        - logsBloom
+        - number
+        - gasLimit
+        - gasUsed
+        - timestamp
+        - extraData
+        - mixHash
+        - nonce
+        - size
+        - transactions
+        - uncles
+      properties:
+        parentHash:
+          title: Parent block hash
+          $ref: '#/components/schemas/hash32'
+        sha3Uncles:
+          title: Ommers hash
+          $ref: '#/components/schemas/hash32'
+        miner:
+          title: Coinbase
+          $ref: '#/components/schemas/address'
+        stateRoot:
+          title: State root
+          $ref: '#/components/schemas/hash32'
+        transactionsRoot:
+          title: Transactions root
+          $ref: '#/components/schemas/hash32'
+        receiptsRoot:
+          title: Receipts root
+          $ref: '#/components/schemas/hash32'
+        logsBloom:
+          title: Bloom filter
+          $ref: '#/components/schemas/bytes256'
+        difficulty:
+          title: Difficulty
+          $ref: '#/components/schemas/bytes'
+        number:
+          title: Number
+          $ref: '#/components/schemas/uint'
+        gasLimit:
+          title: Gas limit
+          $ref: '#/components/schemas/uint'
+        gasUsed:
+          title: Gas used
+          $ref: '#/components/schemas/uint'
+        timestamp:
+          title: Timestamp
+          $ref: '#/components/schemas/uint'
+        extraData:
+          title: Extra data
+          $ref: '#/components/schemas/bytes'
+        mixHash:
+          title: Mix hash
+          $ref: '#/components/schemas/hash32'
+        nonce:
+          title: Nonce
+          $ref: '#/components/schemas/bytes8'
+        totalDifficulty:
+          title: Total difficulty
+          $ref: '#/components/schemas/uint'
+        baseFeePerGas:
+          title: Base fee per gas
+          $ref: '#/components/schemas/uint'
+        withdrawalsRoot:
+          title: Withdrawals root
+          $ref: '#/components/schemas/hash32'
+        size:
+          title: Block size
+          $ref: '#/components/schemas/uint'
+        transactions:
+          anyOf:
+            - title: Transaction hashes
+              type: array
+              items:
+                $ref: '#/components/schemas/hash32'
+            - title: Full transactions
+              type: array
+              items:
+                $ref: '#/components/schemas/TransactionSigned'
+        withdrawals:
+          title: Withdrawals
+          type: array
+          items:
+            $ref: '#/components/schemas/Withdrawal'
+        uncles:
+          title: Uncles
+          type: array
+          items:
+            $ref: '#/components/schemas/hash32'
+    BlockTag:
+      title: Block tag
+      type: string
+      enum:
+        - earliest
+        - finalized
+        - safe
+        - latest
+        - pending
+      description: '`earliest`: The lowest numbered block the client has available; `finalized`: The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination; `safe`: The most recent block that is safe from re-orgs under honest majority and certain synchronicity assumptions; `latest`: The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions; `pending`: A sample next block built by the client on top of `latest` and containing the set of transactions usually taken from local mempool. Before the merge transition is finalized, any call querying for `finalized` or `safe` block MUST be responded to with `-39001: Unknown block` error'
+    BlockNumberOrTag:
+      title: Block number or tag
+      oneOf:
+        - title: Block number
+          $ref: '#/components/schemas/uint'
+        - title: Block tag
+          $ref: '#/components/schemas/BlockTag'
+    BlockNumberOrTagOrHash:
+      title: Block number, tag, or block hash
+      anyOf:
+        - $ref: '#/components/schemas/uint'
+        - $ref: '#/components/schemas/BlockTag'
+        - $ref: '#/components/schemas/hash32'
+    BadBlock:
+      title: Bad block
+      type: object
+      required:
+        - block
+        - hash
+        - rlp
+      properties:
+        block:
+          title: Block
+          $ref: '#/components/schemas/bytes'
+        hash:
+          title: Hash
+          $ref: '#/components/schemas/hash32'
+        rlp:
+          title: RLP
+          $ref: '#/components/schemas/bytes'
+    SyncingStatus:
+      title: Syncing status
+      oneOf:
+        - title: Syncing progress
+          type: object
+          properties:
+            startingBlock:
+              title: Starting block
+              $ref: '#/components/schemas/uint'
+            currentBlock:
+              title: Current block
+              $ref: '#/components/schemas/uint'
+            highestBlock:
+              title: Highest block
+              $ref: '#/components/schemas/uint'
+        - title: Not syncing
+          description: Should always return false if not syncing.
+          type: boolean
+    FilterResults:
+      title: Filter results
+      oneOf:
+        - title: new block hashes
+          type: array
+          items:
+            $ref: '#/components/schemas/hash32'
+        - title: new transaction hashes
+          type: array
+          items:
+            $ref: '#/components/schemas/hash32'
+        - title: new logs
+          type: array
+          items:
+            $ref: '#/components/schemas/Log'
+    Filter:
+      title: filter
+      type: object
+      properties:
+        fromBlock:
+          title: from block
+          $ref: '#/components/schemas/uint'
+        toBlock:
+          title: to block
+          $ref: '#/components/schemas/uint'
+        address:
+          title: Address(es)
+          oneOf:
+            - title: Address
+              $ref: '#/components/schemas/address'
+            - title: Addresses
+              $ref: '#/components/schemas/addresses'
+        topics:
+          title: Topics
+          $ref: '#/components/schemas/FilterTopics'
+    FilterTopics:
+      title: Filter Topics
+      type: array
+      items:
+        $ref: '#/components/schemas/FilterTopic'
+    FilterTopic:
+      title: Filter Topic List Entry
+      oneOf:
+        - title: Any Topic Match
+          type: "null"
+        - title: Single Topic Match
+          $ref: '#/components/schemas/bytes32'
+        - title: Multiple Topic Match
+          type: array
+          items:
+            $ref: '#/components/schemas/bytes32'
+    Log:
+      title: log
+      type: object
+      required:
+        - transactionHash
+      properties:
+        removed:
+          title: removed
+          type: boolean
+        logIndex:
+          title: log index
+          $ref: '#/components/schemas/uint'
+        transactionIndex:
+          title: transaction index
+          $ref: '#/components/schemas/uint'
+        transactionHash:
+          title: transaction hash
+          $ref: '#/components/schemas/hash32'
+        blockHash:
+          title: block hash
+          $ref: '#/components/schemas/hash32'
+        blockNumber:
+          title: block number
+          $ref: '#/components/schemas/uint'
+        address:
+          title: address
+          $ref: '#/components/schemas/address'
+        data:
+          title: data
+          $ref: '#/components/schemas/bytes'
+        topics:
+          title: topics
+          type: array
+          items:
+            $ref: '#/components/schemas/bytes32'
+    ReceiptInfo:
+      type: object
+      title: Receipt info
+      required:
+        - blockHash
+        - blockNumber
+        - from
+        - cumulativeGasUsed
+        - gasUsed
+        - logs
+        - logsBloom
+        - transactionHash
+        - transactionIndex
+        - effectiveGasPrice
+      properties:
+        transactionHash:
+          title: transaction hash
+          $ref: '#/components/schemas/hash32'
+        transactionIndex:
+          title: transaction index
+          $ref: '#/components/schemas/uint'
+        blockHash:
+          title: block hash
+          $ref: '#/components/schemas/hash32'
+        blockNumber:
+          title: block number
+          $ref: '#/components/schemas/uint'
+        from:
+          title: from
+          $ref: '#/components/schemas/address'
+        to:
+          title: to
+          description: Address of the receiver or null in a contract creation transaction.
+          $ref: '#/components/schemas/address'
+        cumulativeGasUsed:
+          title: cumulative gas used
+          description: The sum of gas used by this transaction and all preceding transactions in the same block.
+          $ref: '#/components/schemas/uint'
+        gasUsed:
+          title: gas used
+          description: The amount of gas used for this specific transaction alone.
+          $ref: '#/components/schemas/uint'
+        contractAddress:
+          title: contract address
+          description: The contract address created, if the transaction was a contract creation, otherwise null.
+          oneOf:
+            - $ref: '#/components/schemas/address'
+            - name: Null
+              type: "null"
+        logs:
+          title: logs
+          type: array
+          items:
+            $ref: '#/components/schemas/Log'
+        logsBloom:
+          title: logs bloom
+          $ref: '#/components/schemas/bytes256'
+        root:
+          title: state root
+          description: The post-transaction state root. Only specified for transactions included before the Byzantium upgrade.
+          $ref: '#/components/schemas/hash32'
+        status:
+          title: status
+          description: Either 1 (success) or 0 (failure). Only specified for transactions included after the Byzantium upgrade.
+          $ref: '#/components/schemas/uint'
+        effectiveGasPrice:
+          title: effective gas price
+          description: The actual value per gas deducted from the senders account. Before EIP-1559, this is equal to the transaction's gas price. After, it is equal to baseFeePerGas + min(maxFeePerGas - baseFeePerGas, maxPriorityFeePerGas).
+          $ref: '#/components/schemas/uint'
+    AccountProof:
+      title: Account proof
+      type: object
+      required:
+        - address
+        - accountProof
+        - balance
+        - codeHash
+        - nonce
+        - storageHash
+        - storageProof
+      properties:
+        address:
+          title: address
+          $ref: '#/components/schemas/address'
+        accountProof:
+          title: accountProof
+          type: array
+          items:
+            $ref: '#/components/schemas/bytes'
+        balance:
+          title: balance
+          $ref: '#/components/schemas/uint256'
+        codeHash:
+          title: codeHash
+          $ref: '#/components/schemas/hash32'
+        nonce:
+          title: nonce
+          $ref: '#/components/schemas/uint64'
+        storageHash:
+          title: storageHash
+          $ref: '#/components/schemas/hash32'
+        storageProof:
+          title: Storage proofs
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageProof'
+    StorageProof:
+      title: Storage proof
+      type: object
+      required:
+        - key
+        - value
+        - proof
+      properties:
+        key:
+          title: key
+          $ref: '#/components/schemas/bytesMax32'
+        value:
+          title: value
+          $ref: '#/components/schemas/uint256'
+        proof:
+          title: proof
+          type: array
+          items:
+            $ref: '#/components/schemas/bytes'
+    AccessListEntry:
+      title: Access list entry
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/address'
+        storageKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/hash32'
+    AccessList:
+      title: Access list
+      type: array
+      items:
+        $ref: '#/components/schemas/AccessListEntry'
+    Transaction1559Unsigned:
+      type: object
+      title: EIP-1559 transaction.
+      required:
+        - type
+        - nonce
+        - gas
+        - value
+        - input
+        - maxFeePerGas
+        - maxPriorityFeePerGas
+        - chainId
+        - accessList
+      properties:
+        type:
+          title: type
+          $ref: '#/components/schemas/byte'
+        nonce:
+          title: nonce
+          $ref: '#/components/schemas/uint'
+        to:
+          title: to address
+          $ref: '#/components/schemas/address'
+        gas:
+          title: gas limit
+          $ref: '#/components/schemas/uint'
+        value:
+          title: value
+          $ref: '#/components/schemas/uint'
+        input:
+          title: input data
+          $ref: '#/components/schemas/bytes'
+        maxPriorityFeePerGas:
+          title: max priority fee per gas
+          description: Maximum fee per gas the sender is willing to pay to miners in wei
+          $ref: '#/components/schemas/uint'
+        maxFeePerGas:
+          title: max fee per gas
+          description: The maximum total fee per gas the sender is willing to pay (includes the network / base fee and miner / priority fee) in wei
+          $ref: '#/components/schemas/uint'
+        accessList:
+          title: accessList
+          description: EIP-2930 access list
+          $ref: '#/components/schemas/AccessList'
+        chainId:
+          title: chainId
+          description: Chain ID that this transaction is valid on.
+          $ref: '#/components/schemas/uint'
+    Transaction2930Unsigned:
+      type: object
+      title: EIP-2930 transaction.
+      required:
+        - type
+        - nonce
+        - gas
+        - value
+        - input
+        - gasPrice
+        - chainId
+        - accessList
+      properties:
+        type:
+          title: type
+          $ref: '#/components/schemas/byte'
+        nonce:
+          title: nonce
+          $ref: '#/components/schemas/uint'
+        to:
+          title: to address
+          $ref: '#/components/schemas/address'
+        gas:
+          title: gas limit
+          $ref: '#/components/schemas/uint'
+        value:
+          title: value
+          $ref: '#/components/schemas/uint'
+        input:
+          title: input data
+          $ref: '#/components/schemas/bytes'
+        gasPrice:
+          title: gas price
+          description: The gas price willing to be paid by the sender in wei
+          $ref: '#/components/schemas/uint'
+        accessList:
+          title: accessList
+          description: EIP-2930 access list
+          $ref: '#/components/schemas/AccessList'
+        chainId:
+          title: chainId
+          description: Chain ID that this transaction is valid on.
+          $ref: '#/components/schemas/uint'
+    TransactionLegacyUnsigned:
+      type: object
+      title: Legacy transaction.
+      required:
+        - type
+        - nonce
+        - gas
+        - value
+        - input
+        - gasPrice
+      properties:
+        type:
+          title: type
+          $ref: '#/components/schemas/byte'
+        nonce:
+          title: nonce
+          $ref: '#/components/schemas/uint'
+        to:
+          title: to address
+          $ref: '#/components/schemas/address'
+        gas:
+          title: gas limit
+          $ref: '#/components/schemas/uint'
+        value:
+          title: value
+          $ref: '#/components/schemas/uint'
+        input:
+          title: input data
+          $ref: '#/components/schemas/bytes'
+        gasPrice:
+          title: gas price
+          description: The gas price willing to be paid by the sender in wei
+          $ref: '#/components/schemas/uint'
+        chainId:
+          title: chainId
+          description: Chain ID that this transaction is valid on.
+          $ref: '#/components/schemas/uint'
+    TransactionUnsigned:
+      oneOf:
+        - $ref: '#/components/schemas/Transaction1559Unsigned'
+        - $ref: '#/components/schemas/Transaction2930Unsigned'
+        - $ref: '#/components/schemas/TransactionLegacyUnsigned'
+    Transaction1559Signed:
+      title: Signed 1559 Transaction
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Transaction1559Unsigned'
+        - title: EIP-1559 transaction signature properties.
+          required:
+            - yParity
+            - r
+            - s
+          properties:
+            yParity:
+              title: yParity
+              description: The parity (0 for even, 1 for odd) of the y-value of the secp256k1 signature.
+              $ref: '#/components/schemas/uint'
+            r:
+              title: r
+              $ref: '#/components/schemas/uint'
+            s:
+              title: s
+              $ref: '#/components/schemas/uint'
+    Transaction2930Signed:
+      title: Signed 2930 Transaction
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Transaction2930Unsigned'
+        - title: EIP-2930 transaction signature properties.
+          required:
+            - yParity
+            - r
+            - s
+          properties:
+            yParity:
+              title: yParity
+              description: The parity (0 for even, 1 for odd) of the y-value of the secp256k1 signature.
+              $ref: '#/components/schemas/uint'
+            r:
+              title: r
+              $ref: '#/components/schemas/uint'
+            s:
+              title: s
+              $ref: '#/components/schemas/uint'
+    TransactionLegacySigned:
+      title: Signed Legacy Transaction
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/TransactionLegacyUnsigned'
+        - title: Legacy transaction signature properties.
+          required:
+            - v
+            - r
+            - s
+          properties:
+            v:
+              title: v
+              $ref: '#/components/schemas/uint'
+            r:
+              title: r
+              $ref: '#/components/schemas/uint'
+            s:
+              title: s
+              $ref: '#/components/schemas/uint'
+    TransactionSigned:
+      oneOf:
+        - $ref: '#/components/schemas/Transaction1559Signed'
+        - $ref: '#/components/schemas/Transaction2930Signed'
+        - $ref: '#/components/schemas/TransactionLegacySigned'
+    TransactionInfo:
+      type: object
+      title: Transaction information
+      allOf:
+        - title: Contextual information
+          required:
+            - blockHash
+            - blockNumber
+            - from
+            - hash
+            - transactionIndex
+          properties:
+            blockHash:
+              title: block hash
+              $ref: '#/components/schemas/hash32'
+            blockNumber:
+              title: block number
+              $ref: '#/components/schemas/uint'
+            from:
+              title: from address
+              $ref: '#/components/schemas/address'
+            hash:
+              title: transaction hash
+              $ref: '#/components/schemas/hash32'
+            transactionIndex:
+              title: transaction index
+              $ref: '#/components/schemas/uint'
+        - $ref: '#/components/schemas/TransactionSigned'
+    GenericTransaction:
+      type: object
+      title: Transaction object generic to all types
+      properties:
+        type:
+          title: type
+          $ref: '#/components/schemas/byte'
+        nonce:
+          title: nonce
+          $ref: '#/components/schemas/uint'
+        to:
+          title: to address
+          $ref: '#/components/schemas/address'
+        from:
+          title: from address
+          $ref: '#/components/schemas/address'
+        gas:
+          title: gas limit
+          $ref: '#/components/schemas/uint'
+        value:
+          title: value
+          $ref: '#/components/schemas/uint'
+        input:
+          title: input data
+          $ref: '#/components/schemas/bytes'
+        gasPrice:
+          title: gas price
+          description: The gas price willing to be paid by the sender in wei
+          $ref: '#/components/schemas/uint'
+        maxPriorityFeePerGas:
+          title: max priority fee per gas
+          description: Maximum fee per gas the sender is willing to pay to miners in wei
+          $ref: '#/components/schemas/uint'
+        maxFeePerGas:
+          title: max fee per gas
+          description: The maximum total fee per gas the sender is willing to pay (includes the network / base fee and miner / priority fee) in wei
+          $ref: '#/components/schemas/uint'
+        accessList:
+          title: accessList
+          description: EIP-2930 access list
+          $ref: '#/components/schemas/AccessList'
+        chainId:
+          title: chainId
+          description: Chain ID that this transaction is valid on.
+          $ref: '#/components/schemas/uint'
+
+    Withdrawal:
+      type: object
+      title: Validator withdrawal
+      required:
+        - index
+        - validatorIndex
+        - address
+        - amount
+      properties:
+        index:
+          title: index of withdrawal
+          $ref: '#/components/schemas/uint64'
+        validatorIndex:
+          title: index of validator that generated withdrawal
+          $ref: '#/components/schemas/uint64'
+        address:
+          title: recipient address for withdrawal value
+          $ref: '#/components/schemas/address'
+        amount:
+          title: value contained in withdrawal
+          $ref: '#/components/schemas/uint256'
+
+    Error:
+      type: object
+      title: Error
+      required:
+        - id
+        - jsonrpc
+        - error
+      properties:
+        id:
+          type: number
+          example: 1
+        jsonrpc:
+          type: string
+          example: '2.0'
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: number
+              example: 100
+            message:
+              type: string
+              example: "[json.exception.type_error.302] type must be string, but is number"
+            data:
+              type: string
+              example: ""
+
