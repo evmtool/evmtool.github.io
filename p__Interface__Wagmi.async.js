@@ -1,1 +1,173 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[8950],{85971:function(I,O,i){"use strict";var P=i(54442),E=(0,P.getDvaApp)()._store;O.Z=E},11:function(I,O,i){"use strict";i.r(O);var P=i(17061),E=i.n(P),$=i(17156),b=i.n($),j=i(27424),_=i.n(j),T=i(78565),p=i(38345),W=i(62435),d=i(64119),A=i(63242),R=i(15807),n=i(65735),L=i(2453),k=i(86074),B=new URL(i(24665),i.b).toString(),D=function(){var U=L.ZP.useMessage(),w=_()(U,2),K=w[0],N=w[1],M=(0,W.useCallback)(function(m){if(!(0,d.pM)(m.body))throw console.log("\u8BF7\u8F93\u5165JSON\u683C\u5F0F"),K.error("Request body\u5FC5\u987B\u662FJSON\u683C\u5F0F"),Error("Request body\u5FC5\u987B\u662FJSON\u683C\u5F0F")},[]),o=(0,W.useMemo)(function(){return["fetchBalance","fetchBlockNumber","fetchEnsAddress","fetchEnsAvatar","fetchEnsName","fetchEnsResolver","fetchFeeData","fetchTransaction","fetchToken","getAccount","getContract","getNetwork","getProvider","getWebSocketProvider","multicall","prepareSendTransaction","prepareWriteContract","readContracts","readContract","sendTransaction","signMessage","signTypedData","switchNetwork","waitForTransaction","writeContract"]},[]),Ka=(0,W.useCallback)(function(m){console.log("a",m);for(var g=0;g<o.length;g++)if(m.url.includes(o[g])){M(m),m.url="https://"+location.host+"/#/"+o[g],console.log("b",m.url);break}return m},[M,o]),S=(0,W.useCallback)(function(){var m=b()(E()().mark(function g(a){var C,f,c,u,t,r,l,s,h,y,z,F,za,Z,G,H,Fa,Q,V,X,Za,Y,x,q,Ga,aa,ea,ra,Ha,ta,ia,na,Qa,ua,la,sa,v,Va,Xa,Ya,xa,qa,ae,fa,da,ca,ee,ya,_a,ha,re,ma,ga,ba,te,oa,Oa,pa,ie,va,Ea,Wa,ne,wa,Pa,Da,ue,Na,Sa,Ia,le,ka,Ja,Ma,se,Ca,$a,ja,fe,Ta,Aa,Ra,de,La,Ba,Ua;return E()().wrap(function(e){for(;;)switch(e.prev=e.next){case 0:if(console.log("c",a),!a.url.includes("fetchBlockNumber")){e.next=12;break}return e.next=4,(0,d.zI)((0,n.RQ)(a.body));case 4:C=e.sent,f=_()(C,2),c=f[0],u=f[1],c?a.text=JSON.stringify(c):u&&(a.text=JSON.stringify(u)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 12:if(!a.url.includes("fetchBalance")){e.next=25;break}return console.log("d",a),e.next=16,(0,d.zI)((0,n.EG)(a.body));case 16:t=e.sent,r=_()(t,2),l=r[0],s=r[1],console.log("e",a),l?a.text=JSON.stringify(l):s&&(a.text=JSON.stringify(s)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 25:if(!a.url.includes("fetchEnsAddress")){e.next=36;break}return e.next=28,(0,d.zI)((0,n.bh)(a.body));case 28:h=e.sent,y=_()(h,2),z=y[0],F=y[1],z?a.text=JSON.stringify(z):F&&(a.text=JSON.stringify(F)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 36:if(!a.url.includes("fetchEnsAvatar")){e.next=47;break}return e.next=39,(0,d.zI)((0,n.w6)(a.body));case 39:za=e.sent,Z=_()(za,2),G=Z[0],H=Z[1],G?a.text=JSON.stringify(G):H&&(a.text=JSON.stringify(H)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 47:if(!a.url.includes("fetchEnsName")){e.next=58;break}return e.next=50,(0,d.zI)((0,n.Lk)(a.body));case 50:Fa=e.sent,Q=_()(Fa,2),V=Q[0],X=Q[1],V?a.text=JSON.stringify(V):X&&(a.text=JSON.stringify(X)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 58:if(!a.url.includes("fetchEnsResolver")){e.next=69;break}return e.next=61,(0,d.zI)((0,n.Uj)(a.body));case 61:Za=e.sent,Y=_()(Za,2),x=Y[0],q=Y[1],x?a.text=JSON.stringify(x):q&&(a.text=JSON.stringify(q)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 69:if(!a.url.includes("fetchFeeData")){e.next=80;break}return e.next=72,(0,d.zI)((0,n.jS)(a.body));case 72:Ga=e.sent,aa=_()(Ga,2),ea=aa[0],ra=aa[1],ea?a.text=JSON.stringify(ea):ra&&(a.text=JSON.stringify(ra)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 80:if(!a.url.includes("fetchTransaction")){e.next=91;break}return e.next=83,(0,d.zI)((0,n.KI)(a.body));case 83:Ha=e.sent,ta=_()(Ha,2),ia=ta[0],na=ta[1],ia?a.text=JSON.stringify(ia):na&&(a.text=JSON.stringify(na)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 91:if(!a.url.includes("fetchToken")){e.next=102;break}return e.next=94,(0,d.zI)((0,n.EC)(a.body));case 94:Qa=e.sent,ua=_()(Qa,2),la=ua[0],sa=ua[1],la?a.text=JSON.stringify(la):sa&&(a.text=JSON.stringify(sa)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 102:if(!a.url.includes("getAccount")){e.next=109;break}v=(0,n.D0)(),Va={address:v.address,connector:"Omit",isConnecting:v.isConnecting,isReconnecting:v.isReconnecting,isConnected:v.isConnected,isDisconnected:v.isDisconnected,status:v.status},a.text=JSON.stringify(Va),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 109:if(!a.url.includes("getContract")){e.next=115;break}Xa=(0,n.uN)(a.body),a.text=JSON.stringify(Xa),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 115:if(!a.url.includes("getNetwork")){e.next=121;break}Ya=(0,n.Hy)(),a.text=JSON.stringify(Ya),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 121:if(!a.url.includes("getProvider")){e.next=127;break}xa=(0,n.VH)(a.body),a.text=JSON.stringify(xa),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 127:if(!a.url.includes("getWebSocketProvider")){e.next=133;break}qa=(0,n.lG)(a.body),a.text=JSON.stringify(qa),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 133:if(!a.url.includes("multicall")){e.next=144;break}return e.next=136,(0,d.zI)((0,n.Ap)(a.body));case 136:ae=e.sent,fa=_()(ae,2),da=fa[0],ca=fa[1],da?a.text=JSON.stringify(da):ca&&(a.text=JSON.stringify(ca)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 144:if(!a.url.includes("prepareSendTransaction")){e.next=155;break}return e.next=147,(0,d.zI)((0,n.uw)(a.body));case 147:ee=e.sent,ya=_()(ee,2),_a=ya[0],ha=ya[1],_a?a.text=JSON.stringify(_a):ha&&(a.text=JSON.stringify(ha)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 155:if(!a.url.includes("prepareWriteContract")){e.next=166;break}return e.next=158,(0,d.zI)((0,n.$q)(a.body));case 158:re=e.sent,ma=_()(re,2),ga=ma[0],ba=ma[1],ga?a.text=JSON.stringify(ga):ba&&(a.text=JSON.stringify(ba)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 166:if(!a.url.includes("readContracts")){e.next=177;break}return e.next=169,(0,d.zI)((0,n.JH)(a.body));case 169:te=e.sent,oa=_()(te,2),Oa=oa[0],pa=oa[1],Oa?a.text=JSON.stringify(Oa):pa&&(a.text=JSON.stringify(pa)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 177:if(!a.url.includes("readContract")){e.next=188;break}return e.next=180,(0,d.zI)((0,n.a4)(a.body));case 180:ie=e.sent,va=_()(ie,2),Ea=va[0],Wa=va[1],Ea?a.text=JSON.stringify(Ea):Wa&&(a.text=JSON.stringify(Wa)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 188:if(!a.url.includes("sendTransaction")){e.next=199;break}return e.next=191,(0,d.zI)((0,n.T7)(a.body));case 191:ne=e.sent,wa=_()(ne,2),Pa=wa[0],Da=wa[1],Pa?a.text=JSON.stringify(Pa):Da&&(a.text=JSON.stringify(Da)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 199:if(!a.url.includes("signMessage")){e.next=210;break}return e.next=202,(0,d.zI)((0,n.l)(a.body));case 202:ue=e.sent,Na=_()(ue,2),Sa=Na[0],Ia=Na[1],Sa?a.text=JSON.stringify(Sa):Ia&&(a.text=JSON.stringify(Ia)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 210:if(!a.url.includes("signTypedData")){e.next=221;break}return e.next=213,(0,d.zI)((0,n.xq)(a.body));case 213:le=e.sent,ka=_()(le,2),Ja=ka[0],Ma=ka[1],Ja?a.text=JSON.stringify(Ja):Ma&&(a.text=JSON.stringify(Ma)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 221:if(!a.url.includes("switchNetwork")){e.next=232;break}return e.next=224,(0,d.zI)((0,n.If)(a.body));case 224:se=e.sent,Ca=_()(se,2),$a=Ca[0],ja=Ca[1],$a?a.text=JSON.stringify($a):ja&&(a.text=JSON.stringify(ja)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 232:if(!a.url.includes("waitForTransaction")){e.next=243;break}return e.next=235,(0,d.zI)((0,n.Mn)(a.body));case 235:fe=e.sent,Ta=_()(fe,2),Aa=Ta[0],Ra=Ta[1],Aa?a.text=JSON.stringify(Aa):Ra&&(a.text=JSON.stringify(Ra)),a.headers={"content-type":"application/json; charset=utf-8"},e.next=252;break;case 243:if(!a.url.includes("writeContract")){e.next=252;break}return e.next=246,(0,d.zI)((0,n.n9)(a.body));case 246:de=e.sent,La=_()(de,2),Ba=La[0],Ua=La[1],Ba?a.text=JSON.stringify(Ba):Ua&&(a.text=JSON.stringify(Ua)),a.headers={"content-type":"application/json; charset=utf-8"};case 252:return e.abrupt("return",a);case 253:case"end":return e.stop()}},g)}));return function(g){return m.apply(this,arguments)}}(),[]);return(0,k.jsxs)(T._z,{ghost:!0,children:[(0,k.jsx)(p.Z,{children:(0,k.jsx)(A.Z,{tryItOutEnabled:!0,url:B,requestInterceptor:function(g){return Ka(g)},responseInterceptor:function(g){return S(g)}})}),N]})};O.default=D},64119:function(I,O,i){"use strict";i.d(O,{CE:function(){return B},D0:function(){return U},Hj:function(){return M},IU:function(){return K},Mn:function(){return m},pM:function(){return C},su:function(){return g},zI:function(){return D}});var P=i(27424),E=i.n(P),$=i(17061),b=i.n($),j=i(18698),_=i.n(j),T=i(17156),p=i.n(T),W=i(85971),d=i(2453),A=i(9669),R=i.n(A),n=5;function L(){var f=W.Z.getState().global.nodeConfig;return f.url}function k(f){return new Promise(function(c){return setTimeout(c,f)})}function B(f,c){var u=c||"",t=f,r=Number(t)<1;if(typeof t=="number"&&(t=t.toString()),r){var l=/\d+\.0*\d{3}/,s=/0\.(0{4,})/,h=l.exec(t);if(t=h?h[0]:t,h=s.exec(t),h){var y=h[1].length;return u+t.replace(s,"0.0{"+y+"}")}return u+t}else return u+Number(t).toLocaleString()}function D(f){return J.apply(this,arguments)}function J(){return J=p()(b()().mark(function f(c){var u;return b()().wrap(function(r){for(;;)switch(r.prev=r.next){case 0:return r.prev=0,r.next=3,c;case 3:return u=r.sent,r.abrupt("return",[null,u]);case 7:if(r.prev=7,r.t0=r.catch(0),!(r.t0 instanceof Error)){r.next=14;break}return console.log(r.t0),r.abrupt("return",[r.t0.message,null]);case 14:if(console.log(r.t0),_()(r.t0)!=="object"){r.next=19;break}return r.abrupt("return",[JSON.stringify(r.t0),null]);case 19:return r.abrupt("return",[r.t0,null]);case 20:case"end":return r.stop()}},f,null,[[0,7]])})),J.apply(this,arguments)}function U(f){return w.apply(this,arguments)}function w(){return w=p()(b()().mark(function f(c){var u;return b()().wrap(function(r){for(;;)switch(r.prev=r.next){case 0:return u=L(),r.next=3,D(R().post("".concat(u,"/v1/chain/get_account"),JSON.stringify(c)));case 3:return r.abrupt("return",r.sent);case 4:case"end":return r.stop()}},f)})),w.apply(this,arguments)}function K(f,c){return N.apply(this,arguments)}function N(){return N=p()(b()().mark(function f(c,u){var t;return b()().wrap(function(l){for(;;)switch(l.prev=l.next){case 0:return l.prev=0,l.next=3,c;case 3:return t=l.sent,l.abrupt("return",t);case 7:if(l.prev=7,l.t0=l.catch(0),!(l.t0 instanceof Error)){l.next=15;break}throw console.log(l.t0),d.ZP.error({content:u||l.t0.message,duration:n}),l.t0;case 15:throw console.log(l.t0),_()(l.t0)==="object"?d.ZP.error({content:u||JSON.stringify(l.t0),duration:n}):d.ZP.error({content:u||l.t0,duration:n}),l.t0;case 18:case"end":return l.stop()}},f,null,[[0,7]])})),N.apply(this,arguments)}function M(f,c,u){return o.apply(this,arguments)}function o(){return o=p()(b()().mark(function f(c,u,t){var r,l,s;return b()().wrap(function(y){for(;;)switch(y.prev=y.next){case 0:return r=u!=null?u:function(){},y.prev=1,y.next=4,c;case 4:return l=y.sent,y.abrupt("return",l);case 8:if(y.prev=8,y.t0=y.catch(1),!(y.t0 instanceof Error)){y.next=17;break}throw console.log(y.t0),r(),d.ZP.error({content:t||y.t0.message,duration:n}),y.t0;case 17:throw console.log(y.t0),_()(y.t0)==="object"?(s="",y.t0.hasOwnProperty("message")?s=y.t0.message:s=JSON.stringify(y.t0),d.ZP.error({content:t||s,duration:n})):d.ZP.error({content:t||y.t0,duration:n}),r(),y.t0;case 21:case"end":return y.stop()}},f,null,[[1,8]])})),o.apply(this,arguments)}function Ka(f,c,u){return S.apply(this,arguments)}function S(){return S=_asyncToGenerator(_regeneratorRuntime().mark(function f(c,u,t){var r;return _regeneratorRuntime().wrap(function(s){for(;;)switch(s.prev=s.next){case 0:return s.prev=0,s.next=3,c;case 3:return r=s.sent,message.success({content:u||"Success"}),s.abrupt("return",r);case 8:if(s.prev=8,s.t0=s.catch(0),!(s.t0 instanceof Error)){s.next=16;break}throw console.log(s.t0),message.error({content:t||s.t0.message,duration:n}),s.t0;case 16:throw console.log(s.t0),_typeof(s.t0)==="object"?message.error({content:t||JSON.stringify(s.t0),duration:n}):message.error({content:t||s.t0,duration:n}),s.t0;case 19:case"end":return s.stop()}},f,null,[[0,8]])})),S.apply(this,arguments)}function m(){var f=navigator.userAgent,c=/mobile/i.test(f);return c}function g(f){return a.apply(this,arguments)}function a(){return a=p()(b()().mark(function f(c){var u,t,r,l;return b()().wrap(function(h){for(;;)switch(h.prev=h.next){case 0:return u=null,t=null,h.next=3,D(R().get("".concat(c,"/v1/chain/get_info"),{timeout:1e4}));case 3:return r=h.sent,l=E()(r,2),u=l[0],t=l[1],h.abrupt("return",[u,t]);case 8:case"end":return h.stop()}},f)})),a.apply(this,arguments)}function C(f){if(typeof f=="string")try{var c=JSON.parse(f);return!!(_()(c)==="object"&&c)}catch(u){return!1}}},24665:function(I,O,i){"use strict";I.exports=i.p+"static/wagmi.24b277a1.yaml"},24654:function(){}}]);
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[8950],{11:function(d,c,a){a.r(c);var e=a(58676),r=a(51877),s=a(78565),i=a(26713),t=a(65735),n=a(86074),o=function(){return(0,n.jsx)(s._z,{ghost:!0,className:"interface",children:(0,n.jsxs)(i.Z,{className:"mb-[8px]",direction:"vertical",size:"middle",style:{display:"flex"},children:[(0,n.jsx)(e.K1,{title:"fetchBalance",func:t.EG,desc:"Action for fetching balance information for Ethereum or ERC-20 tokens.",placeholder:'example: {"address": "0x4712567f2EAef852a277a83405408459Bb8195af"}'}),(0,n.jsx)(e.K1,{title:"fetchBlockNumber",func:t.RQ,desc:"Action for fetching the current block number.",placeholder:'example: ""'}),(0,n.jsx)(e.K1,{title:"fetchEnsAddress",func:t.bh,desc:"Action for fetching address for ENS name.",placeholder:'example: {"name": "awkweb.eth"}'}),(0,n.jsx)(e.K1,{title:"fetchEnsAvatar",func:t.w6,desc:"Action for fetching avatar for ENS name.",placeholder:'example: {"name": "awkweb.eth"}'}),(0,n.jsx)(e.K1,{title:"fetchEnsName",func:t.Lk,desc:"Action for fetching ENS name for address.",placeholder:'example: {"address": "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e"}'}),(0,n.jsx)(e.K1,{title:"fetchEnsResolver",func:t.Uj,desc:"Action for fetching the resolver for ENS name.",placeholder:'example: {"name": "awkweb.eth"}'}),(0,n.jsx)(e.K1,{title:"fetchFeeData",func:t.jS,desc:"Action for fetching network fee information.",placeholder:'example: {"chainId": 17777}'}),(0,n.jsx)(e.K1,{title:"fetchTransaction",func:t.KI,desc:"Action for fetching transaction by hash.",placeholder:'example: {"hash": "0xacb442788a39281a1761776481a3389e56e5c50e7dcde28fd2b90dbc40dcaffc"}'}),(0,n.jsx)(e.K1,{title:"fetchToken",func:t.EC,desc:"Action for fetching ERC-20 token information.",placeholder:'example: {"address": "0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0"}'}),(0,n.jsx)(e.K1,{title:"getAccount",func:t.D0,desc:"Action for accessing account data and connection status.",placeholder:'example: ""'}),(0,n.jsx)(e.K1,{title:"getContract",func:t.uN,desc:"Action for creating a type-safe Contract instance.",placeholder:`example: {
+  "address": "0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0",
+  "abi": [{
+    "type": "function",
+    "name": "balanceOf",
+    "stateMutability": "view",
+    "inputs": [{
+      "name": "account",
+      "type": "address"
+    }],
+    "outputs": [{
+      "name": "",
+      "type": "uint256"
+    }]
+  }]
+}`}),(0,n.jsx)(e.K1,{title:"getNetwork",func:t.Hy,desc:"Action for accessing network data, such as current connected chain and connector chains.",placeholder:'example: ""'}),(0,n.jsx)(e.K1,{title:"getProvider",func:t.VH,desc:"Action for accessing Client's ethers Provider.",placeholder:'example: {"chainId": 17777}'}),(0,n.jsx)(e.K1,{title:"getWebSocketProvider",func:t.lG,desc:"Action for accessing the Client's ethers WebSocket Provider.",placeholder:'example: ""'}),(0,n.jsx)(e.K1,{title:"multicall",func:t.Ap,desc:"Action for calling multiple ethers Contract read-only methods via multicall3.",placeholder:`example: {
+  "contracts": [{
+    "address": "0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0",
+    "abi": [{
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [{
+        "name": "account",
+        "type": "address"
+      }],
+      "outputs": [{
+        "name": "",
+        "type": "uint256"
+      }]
+    }],
+    "functionName": "balanceOf",
+    "args": ["0x3E2277bD9bBA5fB227C1b6CD87794B7e26F88F8d"]
+  }, {
+    "address": "0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0",
+    "abi": [{
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [{
+        "name": "account",
+        "type": "address"
+      }],
+      "outputs": [{
+        "name": "",
+        "type": "uint256"
+      }]
+    }],
+    "functionName": "balanceOf",
+    "args": ["0xBae4469d54d1F6D95621672E820Ebf4e2288CCEa"]
+  }]
+}`}),(0,n.jsx)(e.K1,{title:"prepareSendTransaction",func:t.uw,desc:"Action for preparing a transaction to be sent via sendTransaction.",placeholder:'example: {"request": {"to": "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e", "value": "0x10000"}}'}),(0,n.jsx)(e.K1,{title:"prepareWriteContract",func:t.$q,desc:"Action for preparing a contract write to be sent via writeContract.",placeholder:`example: {
+  "address": "0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2",
+  "abi": [{
+    "name": "mint",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [{
+      "internalType": "uint32",
+      "name": "tokenId",
+      "type": "uint32"
+    }],
+    "outputs": []
+  }],
+  "functionName": "mint",
+  "args": [69]
+}`}),(0,n.jsx)(e.K1,{title:"readContract",func:t.a4,desc:"Action for calling an ethers Contract read-only method.",placeholder:`example: {
+  "address": "0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0",
+  "abi": [{
+    "type": "function",
+    "name": "balanceOf",
+    "stateMutability": "view",
+    "inputs": [{
+      "name": "account",
+      "type": "address"
+    }],
+    "outputs": [{
+      "name": "",
+      "type": "uint256"
+    }]
+  }],
+  "functionName": "balanceOf",
+  "args": ["0x3E2277bD9bBA5fB227C1b6CD87794B7e26F88F8d"]
+}`}),(0,n.jsx)(e.K1,{title:"readContracts",func:t.JH,desc:"Action for calling multiple ethers Contract read-only methods.",placeholder:`example: {
+  "contracts": [{
+    "address": "0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0",
+    "abi": [{
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [{
+        "name": "account",
+        "type": "address"
+      }],
+      "outputs": [{
+        "name": "",
+        "type": "uint256"
+      }]
+    }],
+    "functionName": "balanceOf",
+    "args": ["0x3E2277bD9bBA5fB227C1b6CD87794B7e26F88F8d"]
+  }, {
+    "address": "0x2a3b2d64960036de519dC4a45CAfd532Bfa99Ff0",
+    "abi": [{
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [{
+        "name": "account",
+        "type": "address"
+      }],
+      "outputs": [{
+        "name": "",
+        "type": "uint256"
+      }]
+    }],
+    "functionName": "balanceOf",
+    "args": ["0xBae4469d54d1F6D95621672E820Ebf4e2288CCEa"]
+  }]
+}`}),(0,n.jsx)(e.K1,{title:"sendTransaction",func:t.T7,desc:"Action for sending a transaction.",placeholder:'example: {"mode": "recklesslyUnprepared", "request": {"to": "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e", "value": "0x10000"}}'}),(0,n.jsx)(e.K1,{title:"signMessage",func:t.l,desc:"Action for signing messages with connected account.",placeholder:'example: {"message": "Hello World"}'}),(0,n.jsx)(e.K1,{title:"signTypedData",func:t.xq,desc:"Action for signing typed data with connected account.",placeholder:`example: {
+  "domain": {
+    "name": "Ether Mail",
+    "version": "1",
+    "chainId": 15557,
+    "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"
+  },
+  "types": {
+    "Person": [{
+      "name": "name",
+      "type": "string"
+    }, {
+      "name": "wallet",
+      "type": "address"
+    }],
+    "Mail": [{
+      "name": "from",
+      "type": "Person"
+    }, {
+      "name": "to",
+      "type": "Person"
+    }, {
+      "name": "contents",
+      "type": "string"
+    }]
+  },
+  "value": {
+    "from": {
+      "name": "Cow",
+      "wallet": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"
+    },
+    "to": {
+      "name": "Bob",
+      "wallet": "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB"
+    },
+    "contents": "Hello, Bob!"
+  }
+}`}),(0,n.jsx)(e.K1,{title:"switchNetwork",func:t.If,desc:"Action for switching networks with a connector.",placeholder:'example: {"chainId": 17777}'}),(0,n.jsx)(e.K1,{title:"waitForTransaction",func:t.Mn,desc:"Action for declaratively waiting until transaction is processed. Pairs well with writeContract and sendTransaction.",placeholder:'example: {"hash": "0x1b964e61bd8cf281d3866c2941621b62e25d3e2a00c569653521fd27ded15975"}'}),(0,n.jsx)(e.K1,{title:"writeContract",func:t.n9,desc:"Action for calling a Contract write method.",placeholder:`example: {
+  "mode": "recklesslyUnprepared",
+  "address": "0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2",
+  "abi": [{
+    "name": "mint",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [{
+      "internalType": "uint32",
+      "name": "tokenId",
+      "type": "uint32"
+    }],
+    "outputs": []
+  }],
+  "functionName": "mint",
+  "args": [69]
+}`})]})})};c.default=o}}]);
