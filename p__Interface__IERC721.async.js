@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[7937],{84552:function(k,r,e){e.r(r);var g=e(51877),u=e(78565),p=e(38345),s=e(62435),a=e(30837),l=e(96988),I=e.n(l),v=e(34041),o=e(54442),f=e(42628),n=e(86074);a.Z.registerLanguage("solidity",l.solidity);var m=`
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[7937],{84552:function(k,r,e){e.r(r);var g=e(51877),u=e(87659),p=e(38345),s=e(62435),a=e(30837),l=e(96988),I=e.n(l),v=e(34041),o=e(54442),f=e(42628),n=e(86074);a.Z.registerLanguage("solidity",l.solidity);var m=`
 const fullHumanReadableABI = 
 [
   "event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)",
