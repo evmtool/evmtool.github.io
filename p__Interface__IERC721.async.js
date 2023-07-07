@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[7937],{84552:function(k,r,e){e.r(r);var g=e(51877),u=e(87659),p=e(38345),s=e(62435),a=e(30837),l=e(96988),I=e.n(l),v=e(34041),o=e(54442),f=e(42628),n=e(86074);a.Z.registerLanguage("solidity",l.solidity);var m=`
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[7937],{84552:function(g,o,n){n.r(o);var k=n(51877),u=n(87659),p=n(38345),s=n(62435),a=n(30837),l=n(96988),x=n.n(l),f=n(34041),r=n(54442),v=n(42628),e=n(86074);a.Z.registerLanguage("solidity",l.solidity);var m=`
 const fullHumanReadableABI = 
 [
   "event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)",
@@ -35,6 +35,53 @@ const minimalHumanReadableABI =
   "function name() view returns (string)",
   "function symbol() view returns (string)",
   "function tokenURI(uint256) view returns (string)"
+]
+
+const methodId = [
+  "event Transfer(address indexed,address indexed,uint256 indexed)",
+  "0xddf252ad",
+
+  "event Approval(address indexed,address indexed,uint256 indexed)",
+  "0x8c5be1e5",
+
+  "event ApprovalForAll(address indexed,address indexed,bool)",
+  "0x17307eab",
+
+  "function balanceOf(address) view returns (uint256)",
+  "0x70a08231",
+
+  "function ownerOf(uint256) view returns (address)",
+  "0x6352211e",
+
+  "function safeTransferFrom(address,address,uint256,bytes)",
+  "0xb88d4fde",
+
+  "function safeTransferFrom(address,address,uint256)",
+  "0x42842e0e",
+
+  "function transferFrom(address,address,uint256)",
+  "0x23b872dd",
+
+  "function approve(address,uint256)",
+  "0x095ea7b3",
+
+  "function setApprovalForAll(address,bool)",
+  "0xa22cb465",
+
+  "function getApproved(uint256) view returns (address)",
+  "0x081812fc",
+
+  "function isApprovedForAll(address,address) view returns (bool)",
+  "0xe985e9c5",
+
+  "function name() view returns (string)",
+  "0x06fdde03",
+
+  "function symbol() view returns (string)",
+  "0x95d89b41",
+
+  "function tokenURI(uint256) view returns (string)",
+  "0xc87b56dd"
 ]
 
 interface IERC721 
@@ -457,4 +504,4 @@ const jsonABI =
   }
 ]
 
-`,c=function(){var d=(0,o.useDispatch)(),i=(0,o.useSelector)(function(t){return t.interface.ifTheme}),b=(0,o.useIntl)(),h=b.formatMessage({id:"interface.IfTheme"}),y=(0,s.useCallback)(function(t){localStorage.setItem("ifTheme",JSON.stringify(t)),d(f.N.setIfTheme(t))},[d]);return(0,s.useEffect)(function(){a.Z.highlightAll()},[a.Z]),(0,n.jsxs)(u._z,{className:"interface",ghost:!0,children:[(0,n.jsx)("link",{rel:"stylesheet",href:"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/".concat(i,".min.css")}),(0,n.jsx)(p.Z,{title:"IERC721",subTitle:(0,n.jsxs)("div",{children:[(0,n.jsx)("span",{className:"ml-2 mr-2",children:h}),(0,n.jsx)(v.Z,{style:{width:200},defaultValue:i,onChange:y,options:[{value:"a11y-dark",label:"a11y-dark"},{value:"a11y-light",label:"a11y-light"},{value:"agate",label:"agate"},{value:"an-old-hope",label:"an-old-hope"},{value:"androidstudio",label:"androidstudio"},{value:"arduino-light",label:"arduino-light"},{value:"arta",label:"arta"},{value:"ascetic",label:"ascetic"},{value:"atom-one-dark-reasonable",label:"atom-one-dark-reasonable"},{value:"atom-one-dark",label:"atom-one-dark"},{value:"atom-one-light",label:"atom-one-light"},{value:"brown-paper",label:"brown-paper"},{value:"codepen-embed",label:"codepen-embed"},{value:"color-brewer",label:"color-brewer"},{value:"dark",label:"dark"},{value:"default",label:"default"},{value:"devibeans",label:"devibeans"},{value:"docco",label:"docco"},{value:"far",label:"far"},{value:"felipec",label:"felipec"},{value:"foundation",label:"foundation"},{value:"github-dark-dimmed",label:"github-dark-dimmed"},{value:"github-dark",label:"github-dark"},{value:"github",label:"github"},{value:"gml",label:"gml"},{value:"googlecode",label:"googlecode"},{value:"gradient-dark",label:"gradient-dark"},{value:"gradient-light",label:"gradient-light"},{value:"grayscale",label:"grayscale"},{value:"hybrid",label:"hybrid"},{value:"idea",label:"idea"},{value:"intellij-light",label:"intellij-light"},{value:"ir-black",label:"ir-black"},{value:"isbl-editor-dark",label:"isbl-editor-dark"},{value:"isbl-editor-light",label:"isbl-editor-light"},{value:"kimbie-dark",label:"kimbie-dark"},{value:"kimbie-light",label:"kimbie-light"},{value:"lightfair",label:"lightfair"},{value:"lioshi",label:"lioshi"},{value:"magula",label:"magula"},{value:"mono-blue",label:"mono-blue"},{value:"monokai-sublime",label:"monokai-sublime"},{value:"monokai",label:"monokai"},{value:"night-owl",label:"night-owl"},{value:"nnfx-dark",label:"nnfx-dark"},{value:"nnfx-light",label:"nnfx-light"},{value:"nord",label:"nord"},{value:"obsidian",label:"obsidian"},{value:"panda-syntax-dark",label:"panda-syntax-dark"},{value:"panda-syntax-light",label:"panda-syntax-light"},{value:"paraiso-dark",label:"paraiso-dark"},{value:"paraiso-light",label:"paraiso-light"},{value:"pojoaque",label:"pojoaque"},{value:"purebasic",label:"purebasic"},{value:"qtcreator-dark",label:"qtcreator-dark"},{value:"qtcreator-light",label:"qtcreator-light"},{value:"rainbow",label:"rainbow"},{value:"routeros",label:"routeros"},{value:"school-book",label:"school-book"},{value:"shades-of-purple",label:"shades-of-purple"},{value:"srcery",label:"srcery"},{value:"stackoverflow-dark",label:"stackoverflow-dark"},{value:"stackoverflow-light",label:"stackoverflow-light"},{value:"sunburst",label:"sunburst"},{value:"tokyo-night-dark",label:"tokyo-night-dark"},{value:"tokyo-night-light",label:"tokyo-night-light"},{value:"tomorrow-night-blue",label:"tomorrow-night-blue"},{value:"tomorrow-night-bright",label:"tomorrow-night-bright"},{value:"vs",label:"vs"},{value:"vs2015",label:"vs2015"},{value:"xcode",label:"xcode"},{value:"xt256",label:"xt256"}]})]}),children:(0,n.jsx)("pre",{children:(0,n.jsx)("code",{children:m})})})]})};r.default=c},51877:function(){}}]);
+`,c=function(){var d=(0,r.useDispatch)(),i=(0,r.useSelector)(function(t){return t.interface.ifTheme}),b=(0,r.useIntl)(),h=b.formatMessage({id:"interface.IfTheme"}),y=(0,s.useCallback)(function(t){localStorage.setItem("ifTheme",JSON.stringify(t)),d(v.N.setIfTheme(t))},[d]);return(0,s.useEffect)(function(){a.Z.highlightAll()},[a.Z]),(0,e.jsxs)(u._z,{className:"interface",ghost:!0,children:[(0,e.jsx)("link",{rel:"stylesheet",href:"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/".concat(i,".min.css")}),(0,e.jsx)(p.Z,{title:"IERC721",subTitle:(0,e.jsxs)("div",{children:[(0,e.jsx)("span",{className:"ml-2 mr-2",children:h}),(0,e.jsx)(f.Z,{style:{width:200},defaultValue:i,onChange:y,options:[{value:"a11y-dark",label:"a11y-dark"},{value:"a11y-light",label:"a11y-light"},{value:"agate",label:"agate"},{value:"an-old-hope",label:"an-old-hope"},{value:"androidstudio",label:"androidstudio"},{value:"arduino-light",label:"arduino-light"},{value:"arta",label:"arta"},{value:"ascetic",label:"ascetic"},{value:"atom-one-dark-reasonable",label:"atom-one-dark-reasonable"},{value:"atom-one-dark",label:"atom-one-dark"},{value:"atom-one-light",label:"atom-one-light"},{value:"brown-paper",label:"brown-paper"},{value:"codepen-embed",label:"codepen-embed"},{value:"color-brewer",label:"color-brewer"},{value:"dark",label:"dark"},{value:"default",label:"default"},{value:"devibeans",label:"devibeans"},{value:"docco",label:"docco"},{value:"far",label:"far"},{value:"felipec",label:"felipec"},{value:"foundation",label:"foundation"},{value:"github-dark-dimmed",label:"github-dark-dimmed"},{value:"github-dark",label:"github-dark"},{value:"github",label:"github"},{value:"gml",label:"gml"},{value:"googlecode",label:"googlecode"},{value:"gradient-dark",label:"gradient-dark"},{value:"gradient-light",label:"gradient-light"},{value:"grayscale",label:"grayscale"},{value:"hybrid",label:"hybrid"},{value:"idea",label:"idea"},{value:"intellij-light",label:"intellij-light"},{value:"ir-black",label:"ir-black"},{value:"isbl-editor-dark",label:"isbl-editor-dark"},{value:"isbl-editor-light",label:"isbl-editor-light"},{value:"kimbie-dark",label:"kimbie-dark"},{value:"kimbie-light",label:"kimbie-light"},{value:"lightfair",label:"lightfair"},{value:"lioshi",label:"lioshi"},{value:"magula",label:"magula"},{value:"mono-blue",label:"mono-blue"},{value:"monokai-sublime",label:"monokai-sublime"},{value:"monokai",label:"monokai"},{value:"night-owl",label:"night-owl"},{value:"nnfx-dark",label:"nnfx-dark"},{value:"nnfx-light",label:"nnfx-light"},{value:"nord",label:"nord"},{value:"obsidian",label:"obsidian"},{value:"panda-syntax-dark",label:"panda-syntax-dark"},{value:"panda-syntax-light",label:"panda-syntax-light"},{value:"paraiso-dark",label:"paraiso-dark"},{value:"paraiso-light",label:"paraiso-light"},{value:"pojoaque",label:"pojoaque"},{value:"purebasic",label:"purebasic"},{value:"qtcreator-dark",label:"qtcreator-dark"},{value:"qtcreator-light",label:"qtcreator-light"},{value:"rainbow",label:"rainbow"},{value:"routeros",label:"routeros"},{value:"school-book",label:"school-book"},{value:"shades-of-purple",label:"shades-of-purple"},{value:"srcery",label:"srcery"},{value:"stackoverflow-dark",label:"stackoverflow-dark"},{value:"stackoverflow-light",label:"stackoverflow-light"},{value:"sunburst",label:"sunburst"},{value:"tokyo-night-dark",label:"tokyo-night-dark"},{value:"tokyo-night-light",label:"tokyo-night-light"},{value:"tomorrow-night-blue",label:"tomorrow-night-blue"},{value:"tomorrow-night-bright",label:"tomorrow-night-bright"},{value:"vs",label:"vs"},{value:"vs2015",label:"vs2015"},{value:"xcode",label:"xcode"},{value:"xt256",label:"xt256"}]})]}),children:(0,e.jsx)("pre",{children:(0,e.jsx)("code",{children:m})})})]})};o.default=c},51877:function(){}}]);
