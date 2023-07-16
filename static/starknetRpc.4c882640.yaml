@@ -1,0 +1,517 @@
+openapi: 3.0.0
+
+paths:
+  /starknet_getClassHashAt:
+    post:
+      description: Get the contract class hash in the given block for the contract deployed at the given address
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getClassHashAt
+                params:
+                  title: params
+                  example: [ "latest", "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":"0xd0e183745e9dae3e4e78a8ffedcce0903fc4900beace4e0abf192d4c202da3","id":1}
+
+  /starknet_blockHashAndNumber:
+    post:
+      description: Get the most recent accepted block hash and number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_blockHashAndNumber
+                params:
+                  title: params
+                  example: []
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":{"block_hash":"0x226d678ac9c284b6bb95adcc79e066cd865ec6ef5fd2ed2633661776c4b5a78","block_number":106643},"id":1}
+
+  /starknet_getStorageAt:
+    post:
+      description: Get the value of the storage at the given address and key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getStorageAt
+                params:
+                  title: params
+                  type: array
+                  example: ["0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7", "0x0", "latest"]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":"0x0","id":1}
+
+
+  /starknet_blockNumber:
+    post:
+      description: Returns the number of most recent block.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_blockNumber
+                params:
+                  title: params
+                  type: array
+                  example: []
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":106654,"id":1}
+
+  /starknet_getStateUpdate:
+    post:
+      description: Get the information about the result of executing the requested block
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getStateUpdate
+                params:
+                  title: params
+                  type: array
+                  example: ["latest"]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {}
+
+  /starknet_getTransactionByBlockIdAndIndex:
+    post:
+      description: Get the details of the transaction given by the identified block and index in that block. If no transaction is found, null is returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getTransactionByBlockIdAndIndex
+                params:
+                  title: params
+                  type: array
+                  example: ["latest", 1]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {}
+
+  /starknet_getTransactionReceipt:
+    post:
+      description: Returns the receipt of a transaction by transaction hash.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getTransactionReceipt
+                params:
+                  title: params
+                  type: array
+                  example: ['0x06377d9f24fdf3450a84b709e7f3b324963c08baffa47617317adf56153d4f49']
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {}
+
+  /starknet_getBlockTransactionCount:
+    post:
+      description: Returns the number of transactions in the designated block.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getBlockTransactionCount
+                params:
+                  title: params
+                  type: array
+                  example: ["latest"]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":120,"id":1}
+
+  /starknet_call:
+    post:
+      description: Calls a function in a contract and returns the return value. Using this call will not create a transaction; hence, will not change the state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_call
+                params:
+                  title: params
+                  type: array
+                  example: [{"contract_address":"0x049D36570D4e46f48e99674bd3fcc84644DdD6b96F7C741B1562B82f9e004dC7","calldata":["0x017d36057f9d5f0e48d3fb6e49cdad83421d811d9ef564a157bb5672cb34ec5f"],"entry_point_selector":"0x02e4263afad30923c891518314c3c95dbe830a16874e8abc5777a9a20b54c76e"},"latest"]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":["0x12517ec1fec4a8","0x0"],"id":1}
+
+  /starknet_estimateFee:
+    post:
+      description: Estimates the resources required by transactions when applied on a given state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_estimateFee
+                params:
+                  title: params
+                  type: array
+                  example: []
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {jsonrpc:"2.0",id:0,result:"0xbe8c"}
+
+  /starknet_getNonce:
+    post:
+      description: Get the nonce associated with the given address in the given block
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getNonce
+                params:
+                  title: params
+                  type: array
+                  example: []
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {}
+
+  /starknet_chainId:
+    post:
+      description: Return the currently configured StarkNet chain id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_chainId
+                params:
+                  title: params
+                  type: array
+                  example: []
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":"0x534e5f4d41494e","id":1}
+
+  /starknet_getTransactionByHash:
+    post:
+      description: Get the details and status of a submitted transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getTransactionByHash
+                params:
+                  title: params
+                  type: array
+                  example: ["0x16d1d04b1a7738d8bae58b8d75d7bfbfaea198f9c38c7b495885bd15a148eae"]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":{"type":"INVOKE","version":"0x1","transaction_hash":"0x16d1d04b1a7738d8bae58b8d75d7bfbfaea198f9c38c7b495885bd15a148eae","max_fee":"0x4281bda632000","signature":["0x15c40c32300836d4561f893a3979cb2862ec7f9be48240665701b4b0fbb5f75","0x6e14d8a1c1f94d7393894af5abfc17cef1eb2f57c84e2087d2713f7b9eedb66"],"nonce":"0xa","sender_address":"0x3b8cf57062310ada0cdc1db96154d9f48c73e63c3cb18f95f357bbb350b2887","calldata":["0x2","0xda114221cb83fa859dbdb4c44beeaa0bb37c7537ad5ae66fe5e0efd20e6eb3","0x219209e083275171774dab1df80982e9df2096516f06319c5c6d71ae0a8480c","0x0","0x3","0x1b23ed400b210766111ba5b1e63e33922c6ba0c45e6ad56ce112e5f4c578e62","0x15543c3708653cda9d418b4ccd3be11368e40636c10c44b18cfe756b6d88b29","0x3","0xd","0x10","0x1b23ed400b210766111ba5b1e63e33922c6ba0c45e6ad56ce112e5f4c578e62","0x14d1120d7b160000","0x0","0x1","0xda114221cb83fa859dbdb4c44beeaa0bb37c7537ad5ae66fe5e0efd20e6eb3","0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7","0xf4240","0x2","0x7e2a13b40fc1119ec55e0bcf9428eedaa581ab3c924561ad4e955f95da63138","0xda114221cb83fa859dbdb4c44beeaa0bb37c7537ad5ae66fe5e0efd20e6eb3","0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7","0x14d1120d7b160000","0x0","0x296435c1b71dd","0x0","0x3b8cf57062310ada0cdc1db96154d9f48c73e63c3cb18f95f357bbb350b2887"]},"id":1}
+
+  /starknet_syncing:
+    post:
+      description: Returns an object about the sync status, or false if the node is not synching
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_syncing
+                params:
+                  title: params
+                  type: array
+                  example: []
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {"jsonrpc":"2.0","result":{"starting_block_num":"0x18d1f","current_block_num":"0x1a1bd","highest_block_num":"0x1a1bd","starting_block_hash":"0x15861e0fd6bf5a3fbde9d1747fc50398fc8b2d99e71c48b4480e92e3b6fb206","current_block_hash":"0x50cc44d0e6be9a9bc9e26654623832dd9509155b42e4fe8263e52991cef3ba6","highest_block_hash":"0x50cc44d0e6be9a9bc9e26654623832dd9509155b42e4fe8263e52991cef3ba6"},"id":1}
+
+  /starknet_getBlockWithTxHashes:
+    post:
+      description: Get block information with transaction hashes given the block id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - id
+                - jsonrpc
+                - method
+                - params
+              properties:
+                id:
+                  type: number
+                  example: 1
+                jsonrpc:
+                  type: string
+                  example: "2.0"
+                method:
+                  type: string
+                  example: starknet_getBlockWithTxHashes
+                params:
+                  title: params
+                  type: array
+                  example: ["latest"]
+      responses:
+        '200':
+          content:
+            application/json:
+              example: {}
+
+  /不全:
+    post:
+      description: 不全
+
+
