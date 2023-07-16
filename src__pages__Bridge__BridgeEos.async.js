@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[5889],{71406:function(s,e,r){r.r(e);var l=r(76442),n=r(87659),a=(r(53259),r(86074));e.default=function(){return(0,a.jsx)(n._z,{className:"bridge",ghost:!0,children:(0,a.jsxs)("div",{className:"flex flex-wrap justify-evenly",children:[(0,a.jsx)(l.Nq,{}),(0,a.jsx)(l.rS,{}),(0,a.jsx)(l.pW,{}),(0,a.jsx)(l.Nr,{})]})})}}}]);

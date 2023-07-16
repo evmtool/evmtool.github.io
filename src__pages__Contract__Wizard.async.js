@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[8592],{84389:function(e,s,t){t.r(s);var r=t(87659),i=(t(62435),t(86074));s.default=function(){return(0,i.jsx)(r._z,{ghost:!0,children:(0,i.jsx)("iframe",{src:"https://wizard.openzeppelin.com/embed",style:{display:"block",border:"0px",width:"100%",height:"1022px"}})})}}}]);
